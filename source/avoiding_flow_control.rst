@@ -1,4 +1,4 @@
-（Avoiding）Flow Control
+(Avoiding)Flow Control
 ========================
 
 在典型的 Python 命令式编程(包括将命令式代码存放于类和方法)中，
@@ -9,12 +9,10 @@
 然而那些经常出现的问题，恰恰来自于这些状态变量，可变数据结构所带来的副作用；
 他们虽然在模拟物理世界的概念，却难以准确解释程序中指定点处的状态数据
 
-一个解决方案是不要专注于构建数据集合，而是描述数据集合中包含了什么。
-When one simply thinks, “Here’s some data, what do I need to do with it?”
-rather than the mechanism of constructing the data, more direct
-reasoning is often possible. The imperative flow control described in
-the last paragraph is much more about the “how” than the “what”
-and we can often shift the question.
+一个解决方案是不要专注于如何构建数据集合，而是描述数据集合中包含了什么。
+当人们简单地认为：“这里有一些数据，我需要用它来做什么”时，通常应当尽可能推导，
+而不是着急如何构建数据。最后一段所描述的命令式编程更多的关于 "How"，
+而不是 "what"，我们可以经常在这两者中进行转移。
 
 .. toctree::
 
