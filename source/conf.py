@@ -178,6 +178,7 @@ epub_exclude_files = ['search.html']
 
 
 # add pdf supported
+import os
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 if on_rtd:
     latex_elements = {
