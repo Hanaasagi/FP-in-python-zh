@@ -17,6 +17,7 @@ the last paragraph is much more about the “how” than the “what”
 and we can often shift the question.
 
 .. toctree::
+
     encapsulation
     comprehensions
     recursion
