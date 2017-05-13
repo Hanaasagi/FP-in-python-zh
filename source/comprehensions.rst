@@ -35,3 +35,44 @@
 
     log_lines = (line for line in read_line(huge_log_file)
                       if complex_condition(line))
+
+生成器推导也能够构造列表，但运行时更加友好。生成器推导也有着命令式的版本::
+
+    def get_log_lines(log_file):
+        line = read_line(log_file)
+        while True:
+            try:
+                if complex_condition(line):
+                    yield line
+                line = read_line(log_file)
+            except StopIteration:
+                raise
+
+    log_lines = get_log_lines(huge_log_file)
+
+
+命令式的版本也可以简化，但展示这个版本是为了举例说明 ``for`` 循环迭代一个可迭代对象的
+幕后机制，那些我们从想法中抽象出的诸多细节。事实上，使用 ``yield`` 也是一种对于底层
+迭代器协议(iterator protocol)的抽象。我们也能使用实现 ``.__next__()`` 和 ``.__iter__()``
+方法的类来达成目的::
+
+    class GetLogLines(object):
+
+        def __init__(self, log_file):
+            self.log_file = log_file
+            self.line = None
+
+        def __iter__(self):
+            return self
+
+        def __next__(self):
+            if self.line is None:
+                self.line = read_line(log_file)
+            while not complex_condition(self.line):
+                self.line = read_line(self.log_file)
+            return self.line
+
+    log_lines = GetLogLines(huge_log_file)
+
+抛开离题的迭代器协议和惰性部分，读者应当看到推导将注意力更多地集中到 "What"，而命令式版本尽管
+重构的非常成功，也依然在关注 "How"。
