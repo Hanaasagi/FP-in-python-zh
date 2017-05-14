@@ -23,4 +23,39 @@ Python 没有尾调用消除，在某些语言中使用尾调用消除可以高�
         print(total, end=" ")
         running_sum(numbers[1:], total)
 
-然而，很少有人推荐这种方法；相比之下，简单重复地修改状态变量的迭代可读性会更高，
+然而，很少有人推荐这种方法；相比之下，简单重复地修改状态变量的迭代可读性会更高，此外当 ``numbers``
+长度大于 1000 时，这个函数会成为解释栈溢出的完美示例。但在其他情况下，递归风格，即使是顺序操作，
+仍能更直观地表达算法，并且是以一种更容易理解的方式。以阶乘举例
+
+递归版本::
+
+    def factorialR(N):
+        "Recursive factorial function"
+        assert isinstance(N, int) and N >= 1
+        return 1 if N <= 1 else N * factorialR(N-1)
+
+
+迭代版本::
+
+    def factorialI(N):
+      "Iterative factorial function"
+      assert isinstance(N, int) and N >= 1
+      product = 1
+      while N >= 1:
+          product *= N
+          N -= 1
+      return product
+
+虽然这个算法使用 ``product`` 变量就能够被容易地表达，但使用递归表示更倾向于算法的 "What"
+而不是 "How"。迭代版本中反复地改变 ``product`` 和 ``N`` 的值，感觉就像是在记账，而不是
+寻求计算的本质(但迭代版本大概更快，并且没有限制)。
+
+多说一点，我所知道的 Python 中 ``factorial()`` 的最快版本是函数式编程风格的，并且很好地
+表达了算法的 "What"，不过要熟悉一些高阶函数::
+
+    from functools import reduce
+    from operator import mul
+    def factorialHOF(n):
+        return reduce(mul, range(1, n+1), 1)
+
+某些场景下
