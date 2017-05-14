@@ -58,4 +58,17 @@ Python 没有尾调用消除，在某些语言中使用尾调用消除可以高�
     def factorialHOF(n):
         return reduce(mul, range(1, n+1), 1)
 
-某些场景下
+某些场景下，我们不得不使用递归。有时递归甚至是表达解决方案的唯一明显方式，例如当一个问题提供了
+将自己分治的途径。分治换句话说就是能够对一个大集合的两半(或者，几个类似大小的块)进行相似的计算。
+在这种情况下，递归深度不会太大，仅为 O(log N)， N 为序列的长度。举个例子，快速排序算法十分
+优雅，不需要任何状态变量或循环，完全通过递归来表达::
+
+    def quicksort(lst):
+        "Quicksort over a list-like sequence"
+        if len(lst) == 0:
+            return lst
+        pivot = lst[0]
+        pivots = [x for x in lst if x == pivot]
+        small = quicksort([x for x in lst if x < pivot])
+        large = quicksort([x for x in lst if x > pivot])
+        return small + pivots + large
