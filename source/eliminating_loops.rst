@@ -15,7 +15,7 @@ is actually a good idea.(译者不知所云：但值得一看的是，在系统�
 
     map(func, it)   # map()-based "loop"
 
-类似的技术可用于利用函数式的方法来实现顺序程序流。大多数命令式程序都是由诸如"先做这，再做那个，
+类似的技术可用于使用函数式的方法来实现顺序程序流。大多数命令式程序都是由诸如"先做这，再做那个，
 然后再做其他的"这样的语句所组成。如果这些操作全放到了函数中，那么 ``map()`` 就可以让我们这样做::
 
     # let f1, f2, f3 (etc) be functions that perform actions
@@ -34,7 +34,7 @@ is actually a good idea.(译者不知所云：但值得一看的是，在系统�
     Bye Jane Doe
 
 当然，看这个例子，有人猜想结果会是将所有的参数传入每一个函数而不是从每一个列表取一个参数传入函数。
-若不使用列表推导表达起来是比较困难的::
+若实现上面的想法，不使用列表推导表达起来是比较困难的::
 
     >>> do_all_funcs = lambda fns, *args: [
                               list(map(fn, *args)) for fn in fns]
@@ -71,14 +71,7 @@ is actually a good idea.(译者不知所云：但值得一看的是，在系统�
 我们对于 ``while`` 的转换仍然需要一个 ``while_block()`` 函数，它可能不仅仅包含表达式，或许
 还会有语句。我们可以使用上面提到的 ``map()`` 来进一步将组件转换成函数序列。如果我们这样做，
 还可以返回一个的三元表达式。将这个进一步的函数式重构作为一个练习留给读者。它可能会比较丑陋，
-并且不适合生产环境，但是很好玩。译者觉得可能是这样？
-
-  def while_block():
-      <map(<pre-suite>)>
-      return 1 if <break_condition> else 0
-
-  while_FP = lambda: (<cond> and (while_block() or <map(suite)>)) or while_FP()
-  while_FP()
+并且不适合生产环境，但是很好玩。
 
 使用通常的测试手段，``<cond>`` 很难有利用价值，比如 ``while myvar==7``，因为循环体(按设计)
 不能改变任何变量的值。一种添加更有用的条件的方法是让 ``while_block()`` 返回一个更有趣的值，
@@ -114,4 +107,4 @@ is actually a good idea.(译者不知所云：但值得一看的是，在系统�
 和上面所给出的阶乘示例相似，有时我们可以通过 ``functools.reduce()`` 或其他的 fold 操作(其他
 folds 不在 Python 标准库中，但可以通过第三方库构建)来实现隐式的递归。递归通常只是将一些更简单的
 结果与累积的中间结果相结合的方法，这正是 ``reduce()`` 内部所做的。关于 ``functools.reduce()``
-的更多讨论在高阶函数的章节。
+的更多讨论在高阶函数章节。
