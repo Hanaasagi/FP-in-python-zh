@@ -67,5 +67,10 @@ Python 闭包中的变量绑定有一点问题。它通过 name 而不是 value 
     >>> add4(10, 100)   # Can override the bound value
     110
 
-请注意，使用关键字参数的作用域绑定技巧允许你改变
-scope-binding技巧可以更改封闭值;
+Notice that using the keyword argument scope-binding trick allows
+you to change the closed-over value; but this poses much less of a
+danger for confusion than in the class instance. The overriding
+value for the named variable must be passed explictly in the call
+itself, not rebound somewhere remote in the program flow. Yes, the
+name add4 is no longer accurately descriptive for “add any two
+numbers,” but at least the change in result is syntactically local.
