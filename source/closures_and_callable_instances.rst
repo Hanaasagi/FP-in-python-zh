@@ -6,7 +6,7 @@ operations with data attached"(类是附带操作的数据，闭包是附带数�
 他们完成了相同的事情，将逻辑和数据放在同一个对象中。但毫无疑问有着不同，类强调可变和能重新绑定的状态，
 闭包强调不可变和纯函数。至少在 Python 中，这个分界的两侧没有一个是绝对的，使用哪种要看自己的态度。
 
-让我们构建一个示例，来展现这两种风格：
+让我们构建一个示例，来展现这两种风格::
 
     # A class that creates callable adder instances
     class Adder(object):

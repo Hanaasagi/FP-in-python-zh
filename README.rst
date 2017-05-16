@@ -1,7 +1,7 @@
 Functional Programming in Python
 ===========
 
-Functional Programming in Python  中文翻译 _(:з」∠)_
+Functional Programming in Python  中文翻译 _(:зゝ∠)_
 
 原书 地址_
 
