@@ -39,7 +39,7 @@ functions that each utilize two or three of the basic functions in combination.
 
 ``itertools`` 模块的文档包含了其函数的详细信息以及用于组合它们的许多简短样例。这篇文章没有地方去
 再次重复这些描述，所以仅展示其中的几个。注意实际上，``zip()``， ``map()``， ``filter()`` 和
-``range()``(某种意义上只是一个终止的 ``itertools.count()``)应当在 ``itertools`` 模块，
+``range()`` (某种意义上只是一个终止的 ``itertools.count()``)应当在 ``itertools`` 模块，
 如果他们不是 builtins。所有的这些函数都会惰性生成序列项(大部分基于现有的迭代)，而不创建具体的序列。
 ``all()``, ``any()``, ``sum()``, ``min()``, ``max()`` 和 ``functools.reduce()``
 也能用在 iterables 上，但他们需要将迭代器完全迭代，无法再保留其惰性了。函数 ``itertools.product()``
